@@ -1,0 +1,46 @@
+version: "3.0"
+
+services:
+  consul:
+    image: hashicorp/consul
+    restart: always
+    ports:
+      - 8500:8500
+  python-app:
+    image: consule-test/python-app
+    build:
+      context: python-app
+    restart: always
+    ports:
+      - 5005:5000
+    environment:
+      - CONSUL_HOST=consul
+      - APP_HOST=python-app
+      - APP_NAME=python-app2
+      - APP_TAGS=web,server
+  node-app:
+    image: consule-test/node-app
+    build:
+      context: node-app
+    restart: always
+    environment:
+      - CONSUL_HOST=consul
+      - APP_HOST=node-app
+      - APP_NAME=node-app
+    ports:
+      - 3000:3000
+  java-app:
+    image: consule-test/java-app
+    build:
+      context: java-app
+    restart: always
+    environment:
+      - SPRING_CLOUD_CONSUL_HOST=consul
+  golang-app:
+    image: consule-test/golang-app
+    build:
+      context: golang-app
+    restart: always
+    environment:
+      - CONSUL_HOST=consul
+      - APP_HOST=golang-app

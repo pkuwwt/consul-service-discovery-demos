@@ -1,0 +1,13 @@
+
+spring:
+  application:
+    name: JavaApp
+
+  config:
+    import: 
+
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+

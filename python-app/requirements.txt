@@ -1,0 +1,5 @@
+flask
+#git+https://ghproxy.com/https://github.com/Imaclean74/flask-consulate
+flask-consulate
+consulate
+six
